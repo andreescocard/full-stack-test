@@ -1,7 +1,7 @@
 import { DynamicSideContent } from '@ui5/webcomponents-react';
 import { Button } from '@ui5/webcomponents-react';
 import { Card } from '@ui5/webcomponents-react';
-import { CardHeader } from '@ui5/webcomponents-react';
+import { Grid } from '@ui5/webcomponents-react';
 import { Icon } from '@ui5/webcomponents-react';
 
 const Movie = () => {
@@ -23,30 +23,39 @@ const Movie = () => {
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ex mi, elementum et ante commodo, semper sollicitudin magna. Sed dapibus ut tortor quis varius. Sed luctus sem at nunc porta vulputate. Suspendisse lobortis arcu est, quis ultrices ipsum fermentum a. Vestibulum a ipsum placerat ligula gravida fringilla at id ex. Etiam pellentesque lorem sed sagittis aliquam. Quisque semper orci risus, vel efficitur dui euismod aliquet. Morbi sapien sapien, rhoncus et rutrum nec, rhoncus id nisl. Cras non tincidunt enim, id eleifend neque.
     </p>
 
-    <div id="actorRow">
-      <h3>Actor</h3>
-      <span>randomname</span>
-    </div>
+
+    <Grid position="Center" className="gridActor">
+        <div data-layout-span="XL1 L1 M1 S1">
+          <h3>Actor</h3>
+        </div>
+        <div data-layout-span="XL11 L11 M11 S11">
+          <h5 class="f-w-normal">randomname</h5>
+        </div>
+    </Grid>
+
+    <Grid position="Center" className="gridReview">
+        <div data-layout-span="XL1 L1 M1 S1">
+          <h3>Review</h3>
+        </div>
+        <div data-layout-span="XL11 L11 M11 S11" className="starsReview">
+          <Icon name="unfavorite" className="starReview" />
+          <Icon name="unfavorite" className="starReview" />
+          <Icon name="unfavorite" className="starReview" />
+          <Icon name="unfavorite" className="starReview" />
+          <Icon name="unfavorite" className="starReview" />
+        </div>
+    </Grid>
     
-    <div id="reviewRow">
-      <h3>Review</h3>
-      <div id="reviewStars">
-        <Icon name="unfavorite" />
-        <Icon name="unfavorite" />
-        <Icon name="unfavorite" />
-        <Icon name="unfavorite" />
-        <Icon name="unfavorite" />
-      </div>
-    </div>
+
   
-<Button
-  design="Attention"
-  icon="heart-2"
-  iconEnd
-  onClick={function noRefCheck(){}}
->
-  Favorite
-</Button>
+    <Button
+      design="Emphasized"
+      icon="heart-2"
+      iconEnd
+      onClick={function noRefCheck(){}}
+    >
+      Favorite
+    </Button>
   </div>
 </DynamicSideContent>
     )

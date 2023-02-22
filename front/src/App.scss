@@ -14,6 +14,12 @@ $gap: 0.5rem;
     justify-content: center;
     align-items: center;
 }
+.starsReview{
+    margin-top:20px;
+}
+.starReview{
+    padding-right: 5px;
+}
 
 .text-center{
     text-align: center;
@@ -26,4 +32,7 @@ $gap: 0.5rem;
 }
 .w-100{
     width:100%;
+}
+.f-w-normal{
+    font-weight: normal;
 }
