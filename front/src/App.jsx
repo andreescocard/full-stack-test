@@ -11,7 +11,7 @@ function App() {
     <Layout>
     <div className="container">
 
-    This is a demo
+    content
     </div>
   </Layout>
   )
