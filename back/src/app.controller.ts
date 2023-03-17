@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 import { Movie } from './interface/movie';
 import { LocalStorage } from 'node-localstorage';
 
-
+const localStorage = new LocalStorage('./scratch');
 
 @Controller()
 export class AppController {
@@ -16,17 +16,14 @@ export class AppController {
     return this.appService.getAPIKey();
   }
 
-  @Get('movie/:moviename')
+  @Get('movie/:moviename') //http://localhost:3000/movie/avatar
   findMovie(@Param() params) {
     return this.appService.findMovie(params.moviename);
   }
 
-  @Get('favunfav/:imdbID')
+  @Get('favunfav/:imdbID') //http://localhost:3000/favunfav/tt0499544
   favOrUnfavMovie(@Param() params) {
     
-    const localStorage = new LocalStorage('./scratch');
-    
-
     const stored = localStorage.getItem('imbdIDs');
     if (stored === null || typeof(stored) == 'undefined') {
       localStorage.setItem('imbdIDs', [])
@@ -36,16 +33,50 @@ export class AppController {
          old_Data = JSON.parse(stored);
          if(old_Data.includes(params.imdbID)){
           old_Data.splice(old_Data.indexOf(params.imdbID), 1);
-          localStorage.setItem('imbdIDs', JSON.stringify(old_Data));
          }else{
           old_Data.push(params.imdbID);
-          localStorage.setItem('imbdIDs', JSON.stringify(old_Data));
          }
       }
-      
-
+      localStorage.setItem('imbdIDs', JSON.stringify(old_Data));
     }
 
     return JSON.parse(localStorage.getItem('imbdIDs'));
   }
+
+  @Get('rating/:rate/:imdbID') //http://localhost:3000/rating/1/tt0499544
+  rating(@Param() params) {
+    
+    const ratings = localStorage.getItem('rating');
+
+     if (ratings === null || typeof(ratings) == 'undefined') {
+      localStorage.setItem('rating', [])
+    } else {
+      let old_Data = [];
+      if(ratings != ""){
+         old_Data = JSON.parse(ratings);
+
+
+         let i = 0;
+        while (i < old_Data.length) {
+          if(old_Data[i].includes(params.imdbID)){
+            old_Data.splice(i, 1)
+          }
+          i++;
+        }
+
+         const rate = {
+          imdbID: params.imdbID,
+          rating: params.rate
+        };
+        
+        old_Data.push(JSON.stringify(rate));
+
+        
+      }
+      localStorage.setItem('rating', JSON.stringify(old_Data));
+    }
+
+    return JSON.parse(localStorage.getItem('rating'));
+  }
+
 }
