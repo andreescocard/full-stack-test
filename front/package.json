@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
     "@ui5/webcomponents": "^1.10.4",
     "@ui5/webcomponents-fiori": "^1.10.4",
     "@ui5/webcomponents-react": "^1.9.1",
