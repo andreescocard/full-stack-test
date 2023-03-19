@@ -13,7 +13,8 @@ export class AppController {
 
   @Get()
   getAPIKey(): string {
-    return this.appService.getAPIKey();
+    //return this.appService.getAPIKey();
+    return "silence is golden"
   }
 
   @Get('movie/:moviename') //http://localhost:3000/movie/avatar
