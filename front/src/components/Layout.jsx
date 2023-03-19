@@ -6,8 +6,14 @@ import { Badge } from '@ui5/webcomponents-react';
 import Movie from './Movie'
 import Search from './Search'
 import Footer from './Footer'
+import { useDispatch, useSelector } from 'react-redux';
 
 const Layout = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+
+  console.log("State", state);
+
   return (
     <DynamicPage
       headerTitle={
@@ -28,7 +34,12 @@ const Layout = () => {
         maxHeight: '700px'
       }}>
         <Search />
-        <Movie />
+      {
+         state.movie.data && state.movie.data.Search.map(e => 
+          <Movie movie={e} />
+          )
+      }
+      
         <Footer />
     </DynamicPage>
   )
