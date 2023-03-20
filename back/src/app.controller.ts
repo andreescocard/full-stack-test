@@ -67,30 +67,32 @@ export class AppController {
     
     const ratings = localStorage.getItem('rating');
 
+    const rate = {
+      imdbID: params.imdbID,
+      rating: params.rate
+    };
+    let i = 0;
+
      if (ratings === null || typeof(ratings) == 'undefined') {
-      localStorage.setItem('rating', [])
+      let old_Data = [];
+      old_Data.push(JSON.stringify(rate));
+      localStorage.setItem('rating', JSON.stringify(old_Data));
     } else {
       let old_Data = [];
       if(ratings != ""){
          old_Data = JSON.parse(ratings);
 
 
-         let i = 0;
         while (i < old_Data.length) {
           if(old_Data[i].includes(params.imdbID)){
             old_Data.splice(i, 1)
           }
           i++;
         }
-
-         const rate = {
-          imdbID: params.imdbID,
-          rating: params.rate
-        };
         
         old_Data.push(JSON.stringify(rate));
-
-        
+      }else{
+        old_Data.push(JSON.stringify(rate));
       }
       localStorage.setItem('rating', JSON.stringify(old_Data));
     }
