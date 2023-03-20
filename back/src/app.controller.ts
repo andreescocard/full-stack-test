@@ -57,6 +57,11 @@ export class AppController {
     return JSON.parse(localStorage.getItem('imbdIDs'));
   }
 
+  @Get('ratings/') //http://localhost:3000/ratings/
+  getRatings(@Param() params) {
+    return JSON.parse(localStorage.getItem('rating'));
+  }
+
   @Get('rating/:rate/:imdbID') //http://localhost:3000/rating/1/tt0499544
   rating(@Param() params) {
     
