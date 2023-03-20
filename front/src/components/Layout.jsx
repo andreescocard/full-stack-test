@@ -35,7 +35,7 @@ const Layout = () => {
       }}>
         <Search />
       {
-         state.movie.data && state.movie.data.Search.map(e => 
+         state.movie && state.movie.data && state.movie.data.Search?.map(e => 
           <Movie movie={e} />
           )
       }
