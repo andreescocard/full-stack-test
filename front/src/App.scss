@@ -1,4 +1,5 @@
 $gap: 0.5rem;
+$width-poster: 300px;
 
 .gridSearch{
     gap: $gap !important;
@@ -6,10 +7,10 @@ $gap: 0.5rem;
 .moviePoster{
     margin-top: 22px;
     padding:20px;
-    width: 300px;
+    width: $width-poster;
 }
 .moviePosterSampleText{
-    height: 300px;
+    height: $width-poster;
     display: flex;
     justify-content: center;
     align-items: center;
