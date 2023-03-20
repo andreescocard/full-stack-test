@@ -7,6 +7,10 @@ export const fetchMovies = createAsyncThunk("fetchMovies", async (movieName) => 
     return response.json();
 })
 
+export const clearMovies = createAsyncThunk("clearMovies", async () => {
+    return null;
+})
+
 //createSlice - A function that accepts an initial state, an object of reducer functions, and a "slice name", and automatically generates action creators and action types that correspond to the reducers and state.
 const movieSlice = createSlice({
     name: "movie",
@@ -16,6 +20,7 @@ const movieSlice = createSlice({
         isError: false,
     },
     extraReducers: (builder) => {
+        //fetchMovies
         builder.addCase(fetchMovies.pending, (state, action) => {
             state.isLoading = true;
         })
@@ -24,6 +29,19 @@ const movieSlice = createSlice({
             state.data = action.payload;
         })
         builder.addCase(fetchMovies.rejected, (state, action) => {
+           console.log("Error", action.payload);
+           state.isError = true;
+        })
+
+        //clearMovies
+        builder.addCase(clearMovies.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        builder.addCase(clearMovies.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.data = action.payload;
+        })
+        builder.addCase(clearMovies.rejected, (state, action) => {
            console.log("Error", action.payload);
            state.isError = true;
         })

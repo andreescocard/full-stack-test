@@ -2,7 +2,7 @@ import { Grid } from '@ui5/webcomponents-react';
 import { Button } from '@ui5/webcomponents-react';
 import { Input } from '@ui5/webcomponents-react';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovies } from '../redux/slice/movie';
+import { fetchMovies, clearMovies } from '../redux/slice/movie';
 
 import { useState } from 'react';
 
@@ -14,6 +14,10 @@ const Search = () => {
     
     const handleChange = (event) => {
         setMovie(event.target.value);
+    };
+
+    const clearInput = (event) => {
+        setMovie("");
     };
     
     
@@ -68,7 +72,7 @@ const Search = () => {
         design="Emphasized"
         icon="refresh"
         iconEnd
-        onClick={function noRefCheck(){}}
+        onClick={() => dispatch(clearMovies()) && clearInput()}
         style={{}}
         >
         Reset
