@@ -31,12 +31,14 @@ const Layout = () => {
       showHideHeaderButton={false}
       >
         <Search />
-      {
         
-         state.movie && state.movie.data && state.movie.data.Search?.map(e => 
+        {
+         state.movie.data && state.movie.data.Search?.map(e => 
           <Movie movie={e} key={e.imdbID} />
-          )
-      }
+          ) 
+        }
+
+      
       
         <Footer />
     </DynamicPage>

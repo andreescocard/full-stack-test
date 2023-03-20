@@ -8,6 +8,8 @@ import { useState, useRef } from 'react';
 
 const Search = () => {
 
+const state = useSelector((state) => state);
+
 const dispatch = useDispatch();
 
 const [movie, setMovie] = useState('');
@@ -21,11 +23,10 @@ setMovie("");
 };
 
 const handleKeyUp = (event) => {
-    console.log(input.value)
     setMovie(input.value);
-if (event.key === 'Enter') {
-    submitButton.click()
-}
+    if (event.key === 'Enter') {
+        submitButton.click()
+    }
 }
 
 const submitButtonRef = useRef();
@@ -79,6 +80,10 @@ return (
             >
             Reset
         </Button>
+    </div>
+
+    <div data-layout-indent="XL1 L1 M1 S0" data-layout-span="XL12 L12 M12 S12">
+        <h1>{state.movie.data?.Error}</h1>
     </div>
 </Grid>
 )
