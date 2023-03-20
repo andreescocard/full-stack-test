@@ -12,6 +12,12 @@ const Movie = ({movie}) => {
   const state = useSelector((state) => state);
   let iconFavUnfav = "";
 
+  let rating1 = "unfavorite";
+  let rating2 = "unfavorite";
+  let rating3 = "unfavorite";
+  let rating4 = "unfavorite";
+  let rating5 = "unfavorite";
+
   if(state.movie.isLoading && (state.movie.isError == false)){
     return <h1>Loading...</h1>
    }
@@ -21,6 +27,59 @@ const Movie = ({movie}) => {
    }else{
     iconFavUnfav = "heart-2";
    }
+
+
+
+   //state.movie.dataRatings.filter(e => console.log(JSON.parse(e.imdbID)))
+   /*
+   if (state.movie.dataRatings.filter(e => JSON.parse(e.imdbID) === movie.imdbID).length > 0) {
+    console.log("tem")
+  }else{
+    console.log("n tem")
+  }*/
+  let i =0;
+  for(i=0;i<state.movie.dataRatings.length;i++)
+  {
+    let rating = JSON.parse(state.movie.dataRatings[i]);
+    if(rating.imdbID == movie.imdbID){
+      if(rating.rating == "1"){
+         rating1 = "favorite";
+         rating2 = "unfavorite";
+         rating3 = "unfavorite";
+         rating4 = "unfavorite";
+         rating5 = "unfavorite";
+      }
+      if(rating.rating == "2"){
+        rating1 = "favorite";
+        rating2 = "favorite";
+        rating3 = "unfavorite";
+        rating4 = "unfavorite";
+        rating5 = "unfavorite";
+      }
+      if(rating.rating == "3"){
+        rating1 = "favorite";
+        rating2 = "favorite";
+        rating3 = "favorite";
+        rating4 = "unfavorite";
+        rating5 = "unfavorite";
+      }
+      if(rating.rating == "4"){
+        rating1 = "favorite";
+        rating2 = "favorite";
+        rating3 = "favorite";
+        rating4 = "favorite";
+        rating5 = "unfavorite";
+      }
+      if(rating.rating == "5"){
+        rating1 = "favorite";
+        rating2 = "favorite";
+        rating3 = "favorite";
+        rating4 = "favorite";
+        rating5 = "favorite";
+      }
+    }
+  }
+   
 
 
     return (
@@ -56,16 +115,25 @@ const Movie = ({movie}) => {
         </div>
     </Grid>
 
+    <Grid position="Center" className="gridActor">
+        <div data-layout-span="XL1 L1 M1 S1">
+          <h3>imdbID</h3>
+        </div>
+        <div data-layout-span="XL11 L11 M11 S11">
+          <h5 class="f-w-normal">   {movie.imdbID}</h5>
+        </div>
+    </Grid>
+
     <Grid position="Center" className="gridReview">
         <div data-layout-span="XL1 L1 M1 S1">
           <h3>Review</h3>
         </div>
         <div data-layout-span="XL11 L11 M11 S11" className="starsReview">
-          <Icon name="unfavorite" className="starReview" />
-          <Icon name="unfavorite" className="starReview" />
-          <Icon name="unfavorite" className="starReview" />
-          <Icon name="unfavorite" className="starReview" />
-          <Icon name="unfavorite" className="starReview" />
+          <Icon name={rating1} className="starReview"  />
+          <Icon name={rating2} className="starReview" />
+          <Icon name={rating3} className="starReview" />
+          <Icon name={rating4} className="starReview" />
+          <Icon name={rating5} className="starReview" />
         </div>
     </Grid>
     
