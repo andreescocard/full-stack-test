@@ -14,16 +14,20 @@ export const getFavs = createAsyncThunk("getFavs", async () => {
     const response = await fetch("http://localhost:3000/favs/");
     return response.json();
 })
+export const favOrUnfavMovie = createAsyncThunk("favOrUnfavMovie", async (imdbID) => {
+    const response = await fetch("http://localhost:3000/favunfav/"+imdbID);
+    return response.json();
+})
 
 export const getRatings = createAsyncThunk("getRatings", async () => {
     const response = await fetch("http://localhost:3000/ratings/");
     return response.json();
 })
-
-export const favOrUnfavMovie = createAsyncThunk("favOrUnfavMovie", async (imdbID) => {
-    const response = await fetch("http://localhost:3000/favunfav/"+imdbID);
+export const setRatingMovie = createAsyncThunk("setRatingMovie", async (rate,imdbID) => {
+    const response = await fetch("http://localhost:3000/rating/"+rate+"/"+imdbID);
     return response.json();
 })
+
 
 export const clearMovies = createAsyncThunk("clearMovies", async () => {
     return null;
@@ -78,6 +82,19 @@ const movieSlice = createSlice({
             state.dataRatings = action.payload;
         })
         builder.addCase(getRatings.rejected, (state, action) => {
+           console.log("Error", action.payload);
+           state.isError = true;
+        })
+
+        //setRating
+        builder.addCase(setRatingMovie.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        builder.addCase(setRatingMovie.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.dataRatings = action.payload;
+        })
+        builder.addCase(setRatingMovie.rejected, (state, action) => {
            console.log("Error", action.payload);
            state.isError = true;
         })
