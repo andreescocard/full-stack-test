@@ -7,6 +7,10 @@ import { Provider } from 'react-redux'
 
 import { ThemeProvider } from '@ui5/webcomponents-react';
 
+import { getFavs } from './redux/slice/movie'
+
+store.dispatch(getFavs());
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <ThemeProvider >

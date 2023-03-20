@@ -12,7 +12,6 @@ const Layout = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
-  console.log("State", state);
 
   return (
     <DynamicPage
