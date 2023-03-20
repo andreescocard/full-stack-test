@@ -4,18 +4,24 @@ import { Card } from '@ui5/webcomponents-react';
 import { Grid } from '@ui5/webcomponents-react';
 import { Icon } from '@ui5/webcomponents-react';
 import { useDispatch, useSelector } from 'react-redux';
+import { favOrUnfavMovie } from '../redux/slice/movie';
 
 const Movie = ({movie}) => {
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+  let iconFavUnfav = "";
 
   if(state.movie.isLoading){
     return <h1>Carregando...</h1>
    }
 
 
-   console.log(movie)
+   if(state.movie.dataFavs?.includes(movie.imdbID)){
+    iconFavUnfav = "heart";
+   }else{
+    iconFavUnfav = "heart-2";
+   }
 
 
     return (
@@ -67,10 +73,12 @@ const Movie = ({movie}) => {
 
   
     <Button
+      id={"favunfav-"+movie.imdbID}
       design="Emphasized"
-      icon="heart-2"
+      icon={iconFavUnfav}
+      //icon = "{() => checkIsFavOrUnfav(movie.imdbID)}"
       iconEnd
-      onClick={function noRefCheck(){}}
+      onClick={() => dispatch(favOrUnfavMovie(movie.imdbID))}
     >
       Favorite
     </Button>
