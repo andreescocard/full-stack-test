@@ -57,6 +57,7 @@ const movieSlice = createSlice({
         //fetchMovies
         builder.addCase(fetchMovies.pending, (state, action) => {
             state.isLoading = true;
+            state.data = null;
             state.isError = false;
         })
         builder.addCase(fetchMovies.fulfilled, (state, action) => {

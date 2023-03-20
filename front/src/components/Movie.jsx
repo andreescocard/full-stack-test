@@ -18,9 +18,7 @@ const Movie = ({movie}) => {
   let rating4 = "unfavorite";
   let rating5 = "unfavorite";
 
-  if(state.movie.isLoading && (state.movie.isError == false)){
-    return <h1>Loading...</h1>
-   }
+
 
    if(state.movie.dataFavs?.includes(movie.imdbID)){
     iconFavUnfav = "heart";
