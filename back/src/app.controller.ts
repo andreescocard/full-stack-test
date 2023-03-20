@@ -22,6 +22,11 @@ export class AppController {
     return this.appService.findMovie(params.moviename);
   }
 
+  @Get('favs/') //http://localhost:3000/favs/
+  getFavs(@Param() params) {
+    return JSON.parse(localStorage.getItem('imbdIDs'));
+  }
+
   @Get('favunfav/:imdbID') //http://localhost:3000/favunfav/tt0499544
   favOrUnfavMovie(@Param() params) {
     
