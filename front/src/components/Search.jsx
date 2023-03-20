@@ -85,6 +85,10 @@ return (
     <div data-layout-indent="XL1 L1 M1 S0" data-layout-span="XL12 L12 M12 S12">
         <h1>{state.movie.data?.Error}</h1>
     </div>
+
+    <div data-layout-indent="XL1 L1 M1 S0" data-layout-span="XL12 L12 M12 S12">
+        <h1>{state.movie?.isError == true ? "Please review the typed movie" : ""}</h1>
+    </div>
 </Grid>
 )
 }

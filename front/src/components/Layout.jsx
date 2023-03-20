@@ -33,7 +33,7 @@ const Layout = () => {
         <Search />
         
         {
-         state.movie.data && state.movie.data.Search?.map(e => 
+         state.movie.data && (state.movie.isError == false) && state.movie.data.Search?.map(e => 
           <Movie movie={e} key={e.imdbID} />
           ) 
         }

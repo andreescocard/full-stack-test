@@ -12,7 +12,7 @@ const Movie = ({movie}) => {
   const state = useSelector((state) => state);
   let iconFavUnfav = "";
 
-  if(state.movie.isLoading){
+  if(state.movie.isLoading && (state.movie.isError == false)){
     return <h1>Loading...</h1>
    }
 
