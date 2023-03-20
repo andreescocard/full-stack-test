@@ -26,9 +26,14 @@ export class AppController {
   favOrUnfavMovie(@Param() params) {
     
     const stored = localStorage.getItem('imbdIDs');
+    
     if (stored === null || typeof(stored) == 'undefined') {
-      localStorage.setItem('imbdIDs', [])
+      let old_Data = [];
+      old_Data.push(params.imdbID);
+      localStorage.setItem('imbdIDs', JSON.stringify(old_Data));
+      
     } else {
+      
       let old_Data = [];
       if(stored != ""){
          old_Data = JSON.parse(stored);
@@ -37,6 +42,9 @@ export class AppController {
          }else{
           old_Data.push(params.imdbID);
          }
+      }else{
+        old_Data.push(params.imdbID);
+      localStorage.setItem('imbdIDs', JSON.stringify(old_Data));
       }
       localStorage.setItem('imbdIDs', JSON.stringify(old_Data));
     }
