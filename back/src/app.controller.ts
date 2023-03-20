@@ -24,6 +24,17 @@ export class AppController {
 
   @Get('favs/') //http://localhost:3000/favs/
   getFavs(@Param() params) {
+    const stored = localStorage.getItem('imbdIDs');
+    
+    if (stored === null || typeof(stored) == 'undefined') {
+      let old_Data = [];
+      localStorage.setItem('imbdIDs', JSON.stringify(old_Data));
+    }else{
+      if(stored == ""){
+        let old_Data = [];
+        localStorage.setItem('imbdIDs', JSON.stringify(old_Data));
+      }
+    }
     return JSON.parse(localStorage.getItem('imbdIDs'));
   }
 
@@ -59,6 +70,17 @@ export class AppController {
 
   @Get('ratings/') //http://localhost:3000/ratings/
   getRatings(@Param() params) {
+    const stored = localStorage.getItem('rating');
+    
+    if (stored === null || typeof(stored) == 'undefined') {
+      let old_Data = [];
+      localStorage.setItem('rating', JSON.stringify(old_Data));
+    }else{
+      if(stored == ""){
+        let old_Data = [];
+        localStorage.setItem('rating', JSON.stringify(old_Data));
+      }
+    }
     return JSON.parse(localStorage.getItem('rating'));
   }
 

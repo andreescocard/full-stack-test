@@ -6,7 +6,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //Actions
 export const fetchMovies = createAsyncThunk("fetchMovies", async (movieName) => {
-    const response = await fetch("http://localhost:3000/movie/"+movieName);
+    let response = "";
+    if(movieName != ""){
+        response = await fetch("http://localhost:3000/movie/"+movieName);
+    }else{
+        response = "error"
+    }
+    
     return response.json();
 })
 
@@ -23,7 +29,7 @@ export const getRatings = createAsyncThunk("getRatings", async () => {
     const response = await fetch("http://localhost:3000/ratings/");
     return response.json();
 })
-export const setRatingMovie = createAsyncThunk("setRatingMovie", async (data,state) => {
+export const setRatingMovie = createAsyncThunk("setRatingMovie", async (data) => {
     const response = await fetch("http://localhost:3000/rating/"+data.rate+"/"+data.imdbID);
     //console.log(data)
     return response.json();
@@ -51,10 +57,12 @@ const movieSlice = createSlice({
         //fetchMovies
         builder.addCase(fetchMovies.pending, (state, action) => {
             state.isLoading = true;
+            state.isError = false;
         })
         builder.addCase(fetchMovies.fulfilled, (state, action) => {
             state.isLoading = false;
             state.data = action.payload;
+            state.isError = false;
         })
         builder.addCase(fetchMovies.rejected, (state, action) => {
            console.log("Error", action.payload);
@@ -64,10 +72,12 @@ const movieSlice = createSlice({
         //getFavs
         builder.addCase(getFavs.pending, (state, action) => {
             state.isLoading = true;
+            state.isError = false;
         })
         builder.addCase(getFavs.fulfilled, (state, action) => {
             state.isLoading = false;
             state.dataFavs = action.payload;
+            state.isError = false;
         })
         builder.addCase(getFavs.rejected, (state, action) => {
            console.log("Error", action.payload);
@@ -77,10 +87,12 @@ const movieSlice = createSlice({
         //getRatings
         builder.addCase(getRatings.pending, (state, action) => {
             state.isLoading = true;
+            state.isError = false;
         })
         builder.addCase(getRatings.fulfilled, (state, action) => {
             state.isLoading = false;
             state.dataRatings = action.payload;
+            state.isError = false;
         })
         builder.addCase(getRatings.rejected, (state, action) => {
            console.log("Error", action.payload);
@@ -89,11 +101,12 @@ const movieSlice = createSlice({
 
         //setRating
         builder.addCase(setRatingMovie.pending, (state, action) => {
-            state.isLoading = true;
+            state.isError = false;
         })
         builder.addCase(setRatingMovie.fulfilled, (state, action) => {
             state.isLoading = false;
             state.dataRatings = action.payload;
+            state.isError = false;
         })
         builder.addCase(setRatingMovie.rejected, (state, action) => {
            console.log("Error", action.payload);
@@ -102,9 +115,11 @@ const movieSlice = createSlice({
 
         //favOrUnfavMovie
         builder.addCase(favOrUnfavMovie.pending, (state, action) => {
+            state.isError = false;
         })
         builder.addCase(favOrUnfavMovie.fulfilled, (state, action) => {
             state.dataFavs = action.payload;
+            state.isError = false;
         })
         builder.addCase(favOrUnfavMovie.rejected, (state, action) => {
            console.log("Error", action.payload);
@@ -114,10 +129,12 @@ const movieSlice = createSlice({
         //clearMovies
         builder.addCase(clearMovies.pending, (state, action) => {
             state.isLoading = true;
+            state.isError = false;
         })
         builder.addCase(clearMovies.fulfilled, (state, action) => {
             state.isLoading = false;
             state.data = action.payload;
+            state.isError = false;
         })
         builder.addCase(clearMovies.rejected, (state, action) => {
            console.log("Error", action.payload);
