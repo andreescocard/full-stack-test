@@ -1,7 +1,10 @@
+//slice is a collection of redux reducer and actions in a single file for a feature
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 //createAsyncThunk - A function that accepts a Redux action type string and a callback function that should return a promise. It generates promise lifecycle action types based on the action type prefix that you pass in, and returns a thunk action creator that will run the promise callback and dispatch the lifecycle actions based on the returned promise.
-//Action
+
+//Actions
 export const fetchMovies = createAsyncThunk("fetchMovies", async (movieName) => {
     const response = await fetch("http://localhost:3000/movie/"+movieName);
     return response.json();
@@ -29,6 +32,11 @@ const movieSlice = createSlice({
         data: null,
         isError: false,
     },
+    /*The reducers property both creates an action creator function and responds to that action in the slice reducer. The extraReducers allows you to respond to an action in your slice reducer but does not create an action creator function.
+    
+        You will use reducers most of the time.
+
+    You would use extraReducers when you are dealing with an action that you have already defined somewhere else. The most common examples are responding to a createAsyncThunk action and responding to an action from another slice.*/
     extraReducers: (builder) => {
         //fetchMovies
         builder.addCase(fetchMovies.pending, (state, action) => {
