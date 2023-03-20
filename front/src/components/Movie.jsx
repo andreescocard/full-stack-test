@@ -4,7 +4,7 @@ import { Card } from '@ui5/webcomponents-react';
 import { Grid } from '@ui5/webcomponents-react';
 import { Icon } from '@ui5/webcomponents-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { favOrUnfavMovie } from '../redux/slice/movie';
+import { favOrUnfavMovie, setRatingMovie } from '../redux/slice/movie';
 
 const Movie = ({movie}) => {
 
@@ -120,11 +120,11 @@ const Movie = ({movie}) => {
           <h3>Review</h3>
         </div>
         <div data-layout-span="XL11 L11 M11 S11" className="starsReview">
-          <Icon name={rating1} className="starReview"  />
-          <Icon name={rating2} className="starReview" />
-          <Icon name={rating3} className="starReview" />
-          <Icon name={rating4} className="starReview" />
-          <Icon name={rating5} className="starReview" />
+          <Icon name={rating1} className="starReview" onClick={() => dispatch(setRatingMovie({rate: 1, imdbID: movie.imdbID}))} />
+          <Icon name={rating2} className="starReview" onClick={() => dispatch(setRatingMovie({rate: 2, imdbID: movie.imdbID}))} />
+          <Icon name={rating3} className="starReview" onClick={() => dispatch(setRatingMovie({rate: 3, imdbID: movie.imdbID}))}/>
+          <Icon name={rating4} className="starReview" onClick={() => dispatch(setRatingMovie({rate: 4, imdbID: movie.imdbID}))}/>
+          <Icon name={rating5} className="starReview" onClick={() => dispatch(setRatingMovie({rate: 5, imdbID: movie.imdbID}))}/>
         </div>
     </Grid>
     

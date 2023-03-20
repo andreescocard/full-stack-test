@@ -23,8 +23,9 @@ export const getRatings = createAsyncThunk("getRatings", async () => {
     const response = await fetch("http://localhost:3000/ratings/");
     return response.json();
 })
-export const setRatingMovie = createAsyncThunk("setRatingMovie", async (rate,imdbID) => {
-    const response = await fetch("http://localhost:3000/rating/"+rate+"/"+imdbID);
+export const setRatingMovie = createAsyncThunk("setRatingMovie", async (data,state) => {
+    const response = await fetch("http://localhost:3000/rating/"+data.rate+"/"+data.imdbID);
+    //console.log(data)
     return response.json();
 })
 
