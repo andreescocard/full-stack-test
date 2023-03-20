@@ -15,6 +15,11 @@ export const getFavs = createAsyncThunk("getFavs", async () => {
     return response.json();
 })
 
+export const getRatings = createAsyncThunk("getRatings", async () => {
+    const response = await fetch("http://localhost:3000/ratings/");
+    return response.json();
+})
+
 export const favOrUnfavMovie = createAsyncThunk("favOrUnfavMovie", async (imdbID) => {
     const response = await fetch("http://localhost:3000/favunfav/"+imdbID);
     return response.json();
@@ -60,6 +65,19 @@ const movieSlice = createSlice({
             state.dataFavs = action.payload;
         })
         builder.addCase(getFavs.rejected, (state, action) => {
+           console.log("Error", action.payload);
+           state.isError = true;
+        })
+
+        //getRatings
+        builder.addCase(getRatings.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        builder.addCase(getRatings.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.dataRatings = action.payload;
+        })
+        builder.addCase(getRatings.rejected, (state, action) => {
            console.log("Error", action.payload);
            state.isError = true;
         })
