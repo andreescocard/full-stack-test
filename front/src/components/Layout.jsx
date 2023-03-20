@@ -35,7 +35,7 @@ const Layout = () => {
       {
         
          state.movie && state.movie.data && state.movie.data.Search?.map(e => 
-          <Movie movie={e} />
+          <Movie movie={e} key={e.imdbID} />
           )
       }
       
