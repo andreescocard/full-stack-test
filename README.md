@@ -5,11 +5,17 @@ I made this project for a fullstack test on NTT Data company, it uses the API fr
 
 # Technologies used
  Nodejs
+ 
  Nest
+ 
  Typescript
+ 
  React
+ 
  Redux
+ 
  ui5 Web Component for React
+ 
  SCSS
 
 
