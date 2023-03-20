@@ -28,15 +28,6 @@ const Movie = ({movie}) => {
     iconFavUnfav = "heart-2";
    }
 
-
-
-   //state.movie.dataRatings.filter(e => console.log(JSON.parse(e.imdbID)))
-   /*
-   if (state.movie.dataRatings.filter(e => JSON.parse(e.imdbID) === movie.imdbID).length > 0) {
-    console.log("tem")
-  }else{
-    console.log("n tem")
-  }*/
   let i =0;
   for(i=0;i<state.movie.dataRatings.length;i++)
   {
