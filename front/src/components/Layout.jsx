@@ -30,11 +30,10 @@ const Layout = () => {
       onPinnedStateChange={function noRefCheck(){}}
       onToggleHeaderContent={function noRefCheck(){}}
       showHideHeaderButton={false}
-      style={{
-        maxHeight: '700px'
-      }}>
+      >
         <Search />
       {
+        
          state.movie && state.movie.data && state.movie.data.Search?.map(e => 
           <Movie movie={e} />
           )
